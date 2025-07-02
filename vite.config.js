@@ -1,8 +1,18 @@
-export default {
-    root: '.',
-    publicDir: 'public',
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+    base: '/topography-editor/',
     build: {
         outDir: 'dist',
-        emptyOutDir: true,
+        assetsDir: 'assets',
+        rollupOptions: {
+            input: {
+                main: './index.html',
+            },
+        },
     },
-};
+    server: {
+        open: true,
+    },
+    publicDir: 'public',
+});

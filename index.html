@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title data-i18n="app.title"></title>
-    <link rel="stylesheet" href="/styles/main.css" />
+    <title data-i18n="app.title">Topography Editor</title>
+    <link rel="stylesheet" href="./styles/main.css" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
@@ -21,7 +21,7 @@
                         <span data-i18n="controls.file.title"></span>
                     </div>
                     
-                    <div class="file-input-container" onclick="window.fileModule.triggerFileInput()">
+                    <div class="file-input-container" onclick="window.fileModule?.triggerFileInput()">
                         <input type="file" id="file-input" accept=".geojson,.json">
                         <div class="file-input-text" data-i18n="controls.file.upload"></div>
                     </div>
@@ -40,12 +40,12 @@
                         <span data-i18n="controls.tools.title"></span>
                     </div>
                     
-                    <button class="modern-button" id="crop-mode-btn" onclick="window.cropModule.toggleCropMode()" disabled>
+                    <button class="modern-button" id="crop-mode-btn" onclick="window.cropModule?.toggleCropMode()" disabled>
                         <i data-lucide="scissors"></i>
                         <span data-i18n="controls.tools.cropActivate"></span>
                     </button>
                     
-                    <button class="modern-button" id="delete-mode-btn" onclick="window.deleteModule.toggleDeleteMode()" disabled>
+                    <button class="modern-button" id="delete-mode-btn" onclick="window.deleteModule?.toggleDeleteMode()" disabled>
                         <i data-lucide="trash-2"></i>
                         <span data-i18n="controls.tools.deleteActivate"></span>
                     </button>
@@ -131,11 +131,11 @@
                     </div>
                     
                     <div class="button-group">
-                        <button class="modern-button" onclick="window.pointsModule.addPoint()">
+                        <button class="modern-button" onclick="window.pointsModule?.addPoint()">
                             <i data-lucide="plus"></i>
                             <span data-i18n="controls.markers.add"></span>
                         </button>
-                        <button class="modern-button danger" onclick="window.pointsModule.clearPoints()">
+                        <button class="modern-button danger" onclick="window.pointsModule?.clearPoints()">
                             <i data-lucide="trash-2"></i>
                             <span data-i18n="controls.markers.clear"></span>
                         </button>
@@ -151,11 +151,11 @@
                     </div>
                     
                     <div class="button-group">
-                        <button class="modern-button" onclick="window.exportModule.saveCanvas()" id="save-png-btn" disabled>
+                        <button class="modern-button" onclick="window.exportModule?.saveCanvas()" id="save-png-btn" disabled>
                             <i data-lucide="file-image"></i>
                             PNG
                         </button>
-                        <button class="modern-button" onclick="window.exportModule.exportSVG()" id="export-svg-btn" disabled>
+                        <button class="modern-button" onclick="window.exportModule?.exportSVG()" id="export-svg-btn" disabled>
                             <i data-lucide="file-text"></i>
                             SVG
                         </button>
@@ -164,6 +164,6 @@
             </div>
         </div>
     </div>
-    <script type="module" src="/src/app.js"></script>
+    <script type="module" src="./src/app.js"></script>
 </body>
 </html>
