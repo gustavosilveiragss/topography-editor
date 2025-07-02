@@ -3,30 +3,20 @@ import { i18n } from './i18n.js';
 
 class ControlsModule {
     setup() {
-        this.setupElevationCheckbox();
+        this.setupColorControls();
         this.setupSliders();
     }
 
-    setupElevationCheckbox() {
-        const elevationCheckbox = document.getElementById('elevation-colors');
-        const checkboxVisual = elevationCheckbox.nextElementSibling;
-        const checkboxContainer = elevationCheckbox.closest('.checkbox-container');
-
-        if (elevationCheckbox.checked) {
-            checkboxVisual.classList.add('checked');
+    setupColorControls() {
+        const elevationColorsCheckbox = document.getElementById('elevation-colors');
+        if (elevationColorsCheckbox) {
+            elevationColorsCheckbox.addEventListener('change', (e) => {
+                state.visual.useElevationColors = e.target.checked;
+                if (window.redraw) {
+                    window.redraw();
+                }
+            });
         }
-
-        checkboxContainer.addEventListener('click', (e) => {
-            if (e.target !== elevationCheckbox) {
-                elevationCheckbox.click();
-            }
-        });
-
-        elevationCheckbox.addEventListener('change', (e) => {
-            state.visual.useElevationColors = e.target.checked;
-            checkboxVisual.classList.toggle('checked', e.target.checked);
-            window.redraw();
-        });
     }
 
     setupSliders() {

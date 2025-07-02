@@ -52,10 +52,12 @@ class DrawingModule {
             const elevationGroup = state.contourLines[elevIdx];
             const elevation = elevationGroup.elevation;
 
-            let color = this.colorCache.get(elevation);
+            // Include useElevationColors in the cache key so colors update when setting changes
+            const colorCacheKey = `${elevation}_${state.visual.useElevationColors}`;
+            let color = this.colorCache.get(colorCacheKey);
             if (!color) {
                 color = colorUtils.getElevationColor(elevation);
-                this.colorCache.set(elevation, color);
+                this.colorCache.set(colorCacheKey, color);
             }
 
             for (let lineIdx = 0; lineIdx < elevationGroup.lines.length; lineIdx++) {
