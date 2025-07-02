@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="app.title"></title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <div id="canvas-container">
+            <div class="nav-hint" data-i18n="navigation.hint"></div>
+        </div>
+        
+        <div id="controls">
+            <div class="controls-content">
+                <div class="control-section">
+                    <div class="section-title">
+                        <i data-lucide="file"></i>
+                        <span data-i18n="controls.file.title"></span>
+                    </div>
+                    
+                    <div class="file-input-container" onclick="window.fileModule.triggerFileInput()">
+                        <input type="file" id="file-input" accept=".geojson,.json">
+                        <div class="file-input-text" data-i18n="controls.file.upload"></div>
+                    </div>
+                    
+                    <div class="loading-indicator" id="loading">
+                        <div class="loading-spinner"></div>
+                        <span data-i18n="status.processing"></span>
+                    </div>
+                    
+                    <div class="status-message" id="file-status"></div>
+                </div>
+                
+                <div class="control-section">
+                    <div class="section-title">
+                        <i data-lucide="wrench"></i>
+                        <span data-i18n="controls.tools.title"></span>
+                    </div>
+                    
+                    <button class="modern-button" id="crop-mode-btn" onclick="window.cropModule.toggleCropMode()" disabled>
+                        <i data-lucide="scissors"></i>
+                        <span data-i18n="controls.tools.cropActivate"></span>
+                    </button>
+                    
+                    <button class="modern-button" id="delete-mode-btn" onclick="window.deleteModule.toggleDeleteMode()" disabled>
+                        <i data-lucide="trash-2"></i>
+                        <span data-i18n="controls.tools.deleteActivate"></span>
+                    </button>
+                    
+                    <div class="crop-status status-message" id="crop-status"></div>
+                    <div class="delete-status status-message" id="delete-status"></div>
+                </div>
+                
+                <div class="control-section">
+                    <div class="section-title">
+                        <i data-lucide="palette"></i>
+                        <span data-i18n="controls.colors.title"></span>
+                    </div>
+                    
+                    <div class="checkbox-container">
+                        <div class="modern-checkbox">
+                            <input type="checkbox" id="elevation-colors" checked>
+                            <div class="checkbox-visual"></div>
+                        </div>
+                        <label class="checkbox-label" for="elevation-colors" data-i18n="controls.colors.enable"></label>
+                    </div>
+                    
+                    <div class="elevation-gradient"></div>
+                    <div class="elevation-info" id="elevation-info" data-i18n="controls.colors.loadFile"></div>
+                </div>
+                
+                <div class="control-section">
+                    <div class="section-title">
+                        <i data-lucide="settings"></i>
+                        <span data-i18n="controls.appearance.title"></span>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label" data-i18n="controls.appearance.rotation"></label>
+                        <div class="slider-container">
+                            <input type="range" id="rotation" min="0" max="360" value="0" step="1">
+                        </div>
+                        <div class="value-display" id="rotation-value">0°</div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label" data-i18n="controls.appearance.thickness"></label>
+                        <div class="slider-container">
+                            <input type="range" id="line-weight" min="0.5" max="10" value="2" step="0.5">
+                        </div>
+                        <div class="value-display" id="line-weight-value">2</div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label" data-i18n="controls.appearance.smoothness"></label>
+                        <div class="slider-container">
+                            <input type="range" id="smoothness" min="0" max="100" value="0" step="5">
+                        </div>
+                        <div class="value-display" id="smoothness-value">0</div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label" data-i18n="controls.appearance.density"></label>
+                        <div class="slider-container">
+                            <input type="range" id="density" min="1" max="50" value="1" step="1">
+                        </div>
+                        <div class="value-display" id="density-value" data-i18n="controls.appearance.densityAll"></div>
+                    </div>
+                </div>
+                
+                <div class="control-section">
+                    <div class="section-title">
+                        <i data-lucide="map-pin"></i>
+                        <span data-i18n="controls.markers.title"></span>
+                    </div>
+                    
+                    <div class="coordinate-inputs">
+                        <input type="number" id="point-lat" placeholder="" class="input-field" step="0.0001" data-i18n-placeholder="controls.markers.latitude">
+                        <input type="number" id="point-lon" placeholder="" class="input-field" step="0.0001" data-i18n-placeholder="controls.markers.longitude">
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label" data-i18n="controls.markers.size"></label>
+                        <div class="slider-container">
+                            <input type="range" id="point-size" min="2" max="30" value="10" step="1">
+                        </div>
+                        <div class="value-display" id="point-size-value">10</div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="modern-button" onclick="window.pointsModule.addPoint()">
+                            <i data-lucide="plus"></i>
+                            <span data-i18n="controls.markers.add"></span>
+                        </button>
+                        <button class="modern-button danger" onclick="window.pointsModule.clearPoints()">
+                            <i data-lucide="trash-2"></i>
+                            <span data-i18n="controls.markers.clear"></span>
+                        </button>
+                    </div>
+                    
+                    <div class="point-list" id="point-list" data-i18n="controls.markers.noPoints"></div>
+                </div>
+                
+                <div class="control-section">
+                    <div class="section-title">
+                        <i data-lucide="download"></i>
+                        <span data-i18n="controls.export.title"></span>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="modern-button" onclick="window.exportModule.saveCanvas()" id="save-png-btn" disabled>
+                            <i data-lucide="file-image"></i>
+                            PNG
+                        </button>
+                        <button class="modern-button" onclick="window.exportModule.exportSVG()" id="export-svg-btn" disabled>
+                            <i data-lucide="file-text"></i>
+                            SVG
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/src/app.js"></script>
+</body>
+</html>

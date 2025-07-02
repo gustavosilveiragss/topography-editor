@@ -1,0 +1,78 @@
+{
+    "app": {
+        "title": "Editor de Topografia"
+    },
+    "navigation": {
+        "hint": "Clique e arraste para mover • Scroll para zoom"
+    },
+    "controls": {
+        "file": {
+            "title": "Arquivo GeoJSON",
+            "upload": "Clique para carregar arquivo"
+        },
+        "tools": {
+            "title": "Ferramentas",
+            "cropActivate": "Ativar Recorte",
+            "cropDeactivate": "Sair do Recorte",
+            "deleteActivate": "Ativar Deletar",
+            "deleteDeactivate": "Sair do Deletar"
+        },
+        "colors": {
+            "title": "Cores por Elevação",
+            "enable": "Ativar colorização",
+            "loadFile": "Carregue um arquivo para visualizar elevações"
+        },
+        "appearance": {
+            "title": "Aparência",
+            "rotation": "Rotação",
+            "thickness": "Espessura",
+            "smoothness": "Suavização",
+            "density": "Densidade",
+            "densityAll": "Todas",
+            "densityEvery": "1 a cada"
+        },
+        "markers": {
+            "title": "Marcadores",
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "size": "Tamanho",
+            "add": "Adicionar",
+            "clear": "Limpar",
+            "noPoints": "Nenhum ponto adicionado",
+            "point": "Ponto"
+        },
+        "export": {
+            "title": "Exportar"
+        }
+    },
+    "status": {
+        "processing": "Processando arquivo...",
+        "cropActive": "Modo recorte ativo! Clique em uma linha para recortar",
+        "cropProcessing": "Processando recorte...",
+        "cropSuccess": "Recorte concluído! {kept} linhas mantidas de {original} originais",
+        "deleteActive": "Modo deletar ativo! Clique em uma linha para deletar",
+        "deleteProcessing": "Deletando linha...",
+        "deleteSuccess": "Linha deletada com sucesso",
+        "fileError": "Erro ao processar arquivo: {error}",
+        "readError": "Erro ao ler o arquivo",
+        "invalidFile": "Por favor, selecione um arquivo .geojson ou .json",
+        "invalidGeoJSON": "Arquivo GeoJSON inválido: deve ser uma FeatureCollection",
+        "emptyGeoJSON": "Arquivo GeoJSON vazio: nenhuma feature encontrada",
+        "noGeometry": "Nenhuma geometria LineString ou MultiLineString válida encontrada",
+        "noCoordinates": "Nenhuma coordenada válida encontrada no arquivo",
+        "invalidDimensions": "Dados com dimensões inválidas (largura ou altura zero)",
+        "elevation": "Elevação: {min}m - {max}m",
+        "variation": "Variação: {range}m"
+    },
+    "alerts": {
+        "invalidCoordinates": "Por favor, insira coordenadas válidas (latitude e longitude)",
+        "loadFileFirst": "Carregue um arquivo GeoJSON primeiro!",
+        "coordinatesOutOfBounds": "Coordenadas fora da área do mapa!\nÁrea válida: Lat {minLat} a {maxLat}, Lon {minLon} a {maxLon}",
+        "lineTooSmall": "Linha selecionada muito pequena para ser usada como máscara!",
+        "confirmCrop": "Usar linha da elevação {elevation}m como máscara de recorte? Tudo fora desta área será removido!",
+        "confirmDelete": "Tem certeza que deseja deletar esta linha na elevação {elevation}m?"
+    },
+    "canvas": {
+        "noData": "Carregue um arquivo GeoJSON\npara visualizar as curvas de nível"
+    }
+}
