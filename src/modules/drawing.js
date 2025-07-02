@@ -51,8 +51,7 @@ class DrawingModule {
         ) {
             const elevationGroup = state.contourLines[elevIdx];
             const elevation = elevationGroup.elevation;
-
-            // Include useElevationColors in the cache key so colors update when setting changes
+            
             const colorCacheKey = `${elevation}_${state.visual.useElevationColors}`;
             let color = this.colorCache.get(colorCacheKey);
             if (!color) {
@@ -84,12 +83,25 @@ class DrawingModule {
                     p.stroke(color[0], color[1], color[2]);
                     p.strokeWeight(baseStrokeWeight);
                 }
-
+                
+                let finalPoints = lineString;
                 if (state.visual.smoothness > 0) {
-                    this.drawSmoothLine(p, lineString, elevation);
-                } else {
-                    this.drawStraightLine(p, lineString);
+                    const cacheKey = `${elevation}_${state.visual.smoothness}_${lineString.length}`;
+                    let smoothed = this.smoothCache.get(cacheKey);
+
+                    if (!smoothed) {
+                        smoothed = smoothingUtils.smoothLine(
+                            lineString,
+                            state.visual.smoothness,
+                            p,
+                        );
+                        if (this.smoothCache.size > 1000) this.smoothCache.clear();
+                        this.smoothCache.set(cacheKey, smoothed);
+                    }
+                    finalPoints = smoothed;
                 }
+                
+                this.drawLine(p, finalPoints);
             }
         }
     }
@@ -104,44 +116,16 @@ class DrawingModule {
         }
     }
 
-    drawStraightLine(p, lineString) {
+    drawLine(p, points) {
+        if (points.length < 2) return;
+
         p.beginShape();
-        for (const pt of lineString) p.vertex(pt.x, pt.y);
-        p.endShape();
-    }
+        p.noFill();
 
-    drawSmoothLine(p, lineString, elevation) {
-        const cacheKey = `${elevation}_${state.visual.smoothness}_${lineString.length}`;
-        let smoothed = this.smoothCache.get(cacheKey);
-
-        if (!smoothed) {
-            smoothed = smoothingUtils.smoothLine(lineString, state.visual.smoothness, p);
-            if (this.smoothCache.size > 1000) this.smoothCache.clear();
-            this.smoothCache.set(cacheKey, smoothed);
+        for (const point of points) {
+            p.vertex(point.x, point.y);
         }
 
-        if (smoothed.length < 2) return;
-
-        if (state.visual.smoothness > 50) {
-            this.drawBezierLine(p, smoothed);
-        } else {
-            this.drawStraightLine(p, smoothed);
-        }
-    }
-
-    drawBezierLine(p, smoothed) {
-        p.beginShape();
-        p.vertex(smoothed[0].x, smoothed[0].y);
-
-        for (let i = 1; i < smoothed.length - 1; i++) {
-            const p0 = smoothed[i - 1];
-            const p1 = smoothed[i];
-            const cp1x = p0.x + (p1.x - p0.x) * 0.5;
-            const cp1y = p0.y + (p1.y - p0.y) * 0.5;
-            p.quadraticVertex(cp1x, cp1y, p1.x, p1.y);
-        }
-
-        p.vertex(smoothed[smoothed.length - 1].x, smoothed[smoothed.length - 1].y);
         p.endShape();
     }
 

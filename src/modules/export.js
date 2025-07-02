@@ -18,7 +18,7 @@ class ExportModule {
             alert(i18n.t('alerts.loadFileFirst'));
             return;
         }
-        this.p.save('topo-arte-export');
+        this.p.save('export');
     }
 
     exportSVG() {
