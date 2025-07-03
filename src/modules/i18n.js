@@ -14,7 +14,7 @@ class I18n {
             const response = await fetch(`locales/${locale}.json`);
             this.translations = await response.json();
         } catch (error) {
-            console.error('Failed to load locale:', locale);
+            console.error(this.t('errors.localeLoadFailed'), locale);
         }
     }
 

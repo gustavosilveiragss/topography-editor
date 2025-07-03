@@ -12,30 +12,32 @@
         },
         "tools": {
             "title": "Ferramentas",
-            "cropActivate": "Ativar Recorte",
-            "cropDeactivate": "Sair do Recorte",
-            "deleteActivate": "Ativar Deletar",
-            "deleteDeactivate": "Sair do Deletar"
+            "cropActivate": "Modo Corte",
+            "cropDeactivate": "Desativar Corte",
+            "deleteActivate": "Modo Deletar",
+            "deleteDeactivate": "Desativar Deletar",
+            "lineWidth": "Largura",
+            "fill": "Preencher"
         },
         "colors": {
-            "title": "Cores por Elevação",
-            "enable": "Ativar colorização",
-            "loadFile": "Carregue um arquivo para visualizar elevações"
+            "title": "Cores",
+            "enable": "Usar cores por elevação",
+            "loadFile": "Carregue um arquivo para ver informações de elevação"
         },
         "appearance": {
             "title": "Aparência",
             "rotation": "Rotação",
-            "thickness": "Espessura",
+            "thickness": "Espessura da linha",
             "smoothness": "Suavização",
             "density": "Densidade",
-            "densityAll": "Todas",
-            "densityEvery": "1 a cada"
+            "densityAll": "Todas as linhas",
+            "densityEvery": "A cada"
         },
         "markers": {
             "title": "Marcadores",
             "latitude": "Latitude",
             "longitude": "Longitude",
-            "size": "Tamanho",
+            "size": "Tamanho do ponto",
             "add": "Adicionar",
             "clear": "Limpar",
             "noPoints": "Nenhum ponto adicionado",
@@ -43,36 +45,106 @@
         },
         "export": {
             "title": "Exportar"
+        },
+        "lineWidth": {
+            "width": "Largura",
+            "gradient": "Gradiente",
+            "apply": "Aplicar",
+            "elevation": "Aplicar à elevação",
+            "clear": "Limpar"
+        },
+        "fill": {
+            "opacity": "Opacidade",
+            "useGradient": "Usar gradiente",
+            "apply": "Aplicar",
+            "cancel": "Cancelar",
+            "clearAll": "Limpar Todos"
         }
     },
     "status": {
-        "processing": "Processando arquivo...",
-        "cropActive": "Modo recorte ativo! Clique em uma linha para recortar",
-        "cropProcessing": "Processando recorte...",
-        "cropSuccess": "Recorte concluído! {kept} linhas mantidas de {original} originais",
-        "deleteActive": "Modo deletar ativo! Clique em uma linha para deletar",
-        "deleteProcessing": "Deletando linha...",
-        "deleteSuccess": "Linha deletada com sucesso",
-        "fileError": "Erro ao processar arquivo: {error}",
-        "readError": "Erro ao ler o arquivo",
+        "processing": "Processando...",
+        "invalidGeoJSON": "Arquivo GeoJSON inválido",
+        "emptyGeoJSON": "Arquivo GeoJSON vazio",
+        "noGeometry": "Nenhuma geometria de linha encontrada",
+        "noCoordinates": "Nenhuma coordenada válida encontrada",
+        "invalidDimensions": "Dimensões inválidas",
         "invalidFile": "Por favor, selecione um arquivo .geojson ou .json",
-        "invalidGeoJSON": "Arquivo GeoJSON inválido: deve ser uma FeatureCollection",
-        "emptyGeoJSON": "Arquivo GeoJSON vazio: nenhuma feature encontrada",
-        "noGeometry": "Nenhuma geometria LineString ou MultiLineString válida encontrada",
-        "noCoordinates": "Nenhuma coordenada válida encontrada no arquivo",
-        "invalidDimensions": "Dados com dimensões inválidas (largura ou altura zero)",
+        "fileError": "Erro ao processar arquivo: {error}",
+        "readError": "Erro ao ler arquivo",
         "elevation": "Elevação: {min}m - {max}m",
-        "variation": "Variação: {range}m"
+        "variation": "Variação: {range}m",
+        "cropActive": "Modo corte ativado. Clique em uma linha para criar máscara de corte.",
+        "cropProcessing": "Processando corte...",
+        "cropSuccess": "Corte concluído! {kept} de {original} linhas mantidas.",
+        "deleteActive": "Modo deletar ativado. Clique em uma linha para removê-la.",
+        "deleteProcessing": "Deletando linha...",
+        "deleteSuccess": "Linha deletada com sucesso!",
+        "lineWidthActive": "Clique em uma linha para editar sua largura",
+        "lineSelected": "Linha selecionada. Ajuste os controles abaixo.",
+        "widthApplied": "Largura aplicada!",
+        "widthAppliedToElevation": "Largura aplicada a todas as linhas da elevação!",
+        "widthsCleared": "Larguras resetadas!",
+        "fillSelectFirst": "Selecione a primeira linha",
+        "fillSelectSecond": "Selecione a segunda linha",
+        "fillReady": "Pronto para preencher!",
+        "fillApplied": "Preenchimento aplicado!",
+        "fillsCleared": "Preenchimentos removidos!",
+        "fillIncompatibleLines": "Linhas incompatíveis para preenchimento",
+        "noFillBetweenLines": "Não há preenchimento entre essas linhas",
+        "noActiveFills": "Nenhum preenchimento ativo",
+        "activeFill": "preenchimento ativo",
+        "activeFills": "preenchimentos ativos",
+        "fillsRemoved": "preenchimentos removidos",
+        "firstLine": "Primeira linha",
+        "secondLine": "Segunda linha",
+        "opacity": "opacidade",
+        "fillPreviewing": "Visualizando preenchimento (temporário)",
+        "fillRemoved": "Preenchimento removido",
+        "fileLoaded": "Arquivo carregado: {lines} linhas em {levels} níveis",
+        "noLinesProcessed": "Nenhuma linha processada",
+        "fileTooLarge": "Arquivo muito grande (máximo 50MB)"
     },
     "alerts": {
-        "invalidCoordinates": "Por favor, insira coordenadas válidas (latitude e longitude)",
-        "loadFileFirst": "Carregue um arquivo GeoJSON primeiro!",
-        "coordinatesOutOfBounds": "Coordenadas fora da área do mapa!\nÁrea válida: Lat {minLat} a {maxLat}, Lon {minLon} a {maxLon}",
-        "lineTooSmall": "Linha selecionada muito pequena para ser usada como máscara!",
-        "confirmCrop": "Usar linha da elevação {elevation}m como máscara de recorte? Tudo fora desta área será removido!",
-        "confirmDelete": "Tem certeza que deseja deletar esta linha na elevação {elevation}m?"
+        "loadFileFirst": "Por favor, carregue um arquivo primeiro!",
+        "confirmCrop": "Usar a linha de elevação {elevation}m como máscara de corte?",
+        "confirmDelete": "Deletar esta linha de elevação {elevation}m?",
+        "lineTooSmall": "A linha selecionada é muito pequena para ser usada como máscara",
+        "invalidCoordinates": "Por favor, insira coordenadas válidas",
+        "coordinatesOutOfBounds": "As coordenadas estão fora dos limites do mapa:\nLatitude: {minLat} a {maxLat}\nLongitude: {minLon} a {maxLon}",
+        "selectLineFirst": "Selecione uma linha primeiro!",
+        "confirmClearWidths": "Limpar todas as larguras personalizadas?",
+        "selectTwoLines": "Selecione duas linhas primeiro!",
+        "confirmClearFills": "Remover todos os preenchimentos?",
+        "noFillsToDelete": "Não há preenchimentos para remover",
+        "selectTwoLinesToRemove": "Selecione duas linhas para remover o preenchimento"
     },
     "canvas": {
         "noData": "Carregue um arquivo GeoJSON\npara visualizar as curvas de nível"
+    },
+    "errors": {
+        "statusDivNotFound": "Elemento de status não encontrado",
+        "loadingDivNotFound": "Elemento de carregamento não encontrado",
+        "loadGeoJSONFirst": "Carregue um arquivo GeoJSON primeiro",
+        "canvasContainerNotFound": "Elemento canvas-container não encontrado",
+        "setupError": "Erro durante inicialização",
+        "drawError": "Erro durante renderização",
+        "fatalInitializationError": "Erro fatal durante inicialização",
+        "initializationError": "Erro de Inicialização",
+        "appLoadError": "Ocorreu um erro ao carregar a aplicação:",
+        "checkConsole": "Verifique o console para mais detalhes.",
+        "localeLoadFailed": "Falha ao carregar idioma"
+    },
+    "debug": {
+        "appInitialized": "Aplicação inicializada com sucesso",
+        "loadingShow": "mostrar",
+        "loadingHide": "ocultar",
+        "fileProcessingError": "Erro ao processar arquivo"
+    },
+    "info": {
+        "loadFileForInfo": "Carregue um arquivo para ver informações",
+        "loadGeoJSONForInfo": "Carregue um arquivo GeoJSON para ver informações",
+        "elevationRange": "Elevação: {min}m - {max}m",
+        "levels": "Níveis: {count}",
+        "lines": "Linhas: {count}"
     }
 }

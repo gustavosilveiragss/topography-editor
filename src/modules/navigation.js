@@ -39,6 +39,16 @@ class NavigationModule {
             return;
         }
 
+        if (state.lineWidth.mode) {
+            window.lineWidthModule.handleClick();
+            return;
+        }
+
+        if (state.fill.mode) {
+            window.fillModule.handleClick();
+            return;
+        }
+
         Object.assign(state.navigation, {
             isDragging: true,
             lastMouseX: e.offsetX,
@@ -61,6 +71,16 @@ class NavigationModule {
             mouseCanvasY: offsetY,
         });
 
+        Object.assign(state.lineWidth, {
+            mouseX: offsetX,
+            mouseY: offsetY,
+        });
+
+        Object.assign(state.fill, {
+            mouseX: offsetX,
+            mouseY: offsetY,
+        });
+
         if (state.crop.mode) {
             this.throttledUpdate(() => {
                 cropModule.updateHoveredLine();
@@ -72,6 +92,22 @@ class NavigationModule {
         if (state.delete.mode) {
             this.throttledUpdate(() => {
                 deleteModule.updateHoveredLine();
+                window.redraw();
+            });
+            return;
+        }
+
+        if (state.lineWidth.mode) {
+            this.throttledUpdate(() => {
+                window.lineWidthModule.updateHoveredLine();
+                window.redraw();
+            });
+            return;
+        }
+
+        if (state.fill.mode) {
+            this.throttledUpdate(() => {
+                window.fillModule.updateHoveredLine();
                 window.redraw();
             });
             return;
@@ -116,10 +152,20 @@ class NavigationModule {
             });
             window.redraw();
         }
+
+        if (state.lineWidth.mode) {
+            state.lineWidth.hoveredLine = null;
+            window.redraw();
+        }
+
+        if (state.fill.mode) {
+            state.fill.hoveredLine = null;
+            window.redraw();
+        }
     }
 
     handleWheel(e) {
-        if (state.crop.mode || state.delete.mode) return;
+        if (state.crop.mode || state.delete.mode || state.lineWidth.mode || state.fill.mode) return;
 
         const factor = e.ctrlKey ? (e.deltaY > 0 ? 0.95 : 1.05) : e.deltaY > 0 ? 0.85 : 1.15;
 

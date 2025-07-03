@@ -3,8 +3,29 @@ import { i18n } from './i18n.js';
 
 class ControlsModule {
     setup() {
+        this.initializeToolControls();
         this.setupColorControls();
         this.setupSliders();
+    }
+
+    initializeToolControls() {
+        const toolControls = ['line-width-controls', 'fill-controls'];
+
+        const toolStatus = ['crop-status', 'delete-status', 'line-width-status', 'fill-status'];
+
+        toolControls.forEach((controlId) => {
+            const element = document.getElementById(controlId);
+            if (element) {
+                element.style.display = 'none';
+            }
+        });
+
+        toolStatus.forEach((statusId) => {
+            const element = document.getElementById(statusId);
+            if (element) {
+                element.style.display = 'none';
+            }
+        });
     }
 
     setupColorControls() {

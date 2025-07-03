@@ -41,4 +41,19 @@ export const state = {
         width: 800,
         height: 800,
     },
+    lineWidth: {
+        mode: false,
+        hoveredLine: null,
+        mouseX: 0,
+        mouseY: 0,
+    },
+    fill: {
+        mode: false,
+        hoveredLine: null,
+        selectedLines: [],
+        mouseX: 0,
+        mouseY: 0,
+    },
+    lineWidths: {},
+    fills: {},
 };

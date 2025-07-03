@@ -10,6 +10,8 @@ import { exportModule } from './modules/export.js';
 import { cropModule } from './modules/crop.js';
 import { deleteModule } from './modules/delete.js';
 import { pointsModule } from './modules/points.js';
+import { fillModule } from './modules/fill.js';
+import { lineWidthModule } from './modules/lineWidth.js';
 
 async function initializeApp() {
     try {
@@ -33,6 +35,8 @@ async function initializeApp() {
             cropModule,
             deleteModule,
             pointsModule,
+            fillModule,
+            lineWidthModule,
         });
 
         const sketch = (p) => {
@@ -46,10 +50,12 @@ async function initializeApp() {
                     cropModule.setP5Instance(p);
                     deleteModule.setP5Instance(p);
                     exportModule.setP5Instance(p);
+                    fillModule.setP5Instance(p);
+                    lineWidthModule.setP5Instance(p);
 
-                    console.log('Aplicação inicializada com sucesso!');
+                    console.log(i18n.t('debug.appInitialized'));
                 } catch (error) {
-                    console.error('Erro durante setup:', error);
+                    console.error(i18n.t('errors.setupError'), error);
                 }
             };
 
@@ -57,7 +63,7 @@ async function initializeApp() {
                 try {
                     drawingModule.draw(p);
                 } catch (error) {
-                    console.error('Erro durante draw:', error);
+                    console.error(i18n.t('errors.drawError'), error);
                 }
             };
 
@@ -68,16 +74,16 @@ async function initializeApp() {
         if (canvasContainer) {
             new p5(sketch, canvasContainer);
         } else {
-            console.error('Elemento canvas-container não encontrado!');
+            console.error(i18n.t('errors.canvasContainerNotFound'));
         }
     } catch (error) {
-        console.error('Erro fatal durante inicialização:', error);
+        console.error(i18n.t('errors.fatalInitializationError'), error);
         document.body.innerHTML = `
             <div style="padding: 20px; color: red; font-family: Arial;">
-                <h2>Erro de Inicialização</h2>
-                <p>Ocorreu um erro ao carregar a aplicação:</p>
+                <h2>${i18n.t('errors.initializationError')}</h2>
+                <p>${i18n.t('errors.appLoadError')}</p>
                 <pre>${error.message}</pre>
-                <p>Verifique o console para mais detalhes.</p>
+                <p>${i18n.t('errors.checkConsole')}</p>
             </div>
         `;
     }
