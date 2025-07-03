@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title data-i18n="app.title">Topography Editor</title>
     <link rel="stylesheet" href="./styles/main.css" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-  <script type="module" crossorigin src="/topography-editor/assets/main-CUioK2of.js"></script>
+  <script type="module" crossorigin src="/topography-editor/assets/main-Bg0XDJlP.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -41,18 +41,66 @@
                         <span data-i18n="controls.tools.title"></span>
                     </div>
                     
-                    <button class="modern-button" id="crop-mode-btn" onclick="window.cropModule?.toggleCropMode()" disabled>
-                        <i data-lucide="scissors"></i>
-                        <span data-i18n="controls.tools.cropActivate"></span>
-                    </button>
+                    <div class="button-group">
+                        <button class="modern-button" id="crop-mode-btn" onclick="window.cropModule?.toggleCropMode()" disabled>
+                            <i data-lucide="scissors"></i>
+                            <span data-i18n="controls.tools.cropActivate"></span>
+                        </button>
+                        
+                        <button class="modern-button" id="delete-mode-btn" onclick="window.deleteModule?.toggleDeleteMode()" disabled>
+                            <i data-lucide="trash-2"></i>
+                            <span data-i18n="controls.tools.deleteActivate"></span>
+                        </button>
+                        
+                        <button class="modern-button" id="line-width-btn" onclick="window.lineWidthModule?.toggleLineWidthMode()" disabled>
+                            <i data-lucide="maximize-2"></i>
+                            <span data-i18n="controls.tools.lineWidth"></span>
+                        </button>
+                        
+                        <button class="modern-button" id="fill-mode-btn" onclick="window.fillModule?.toggleFillMode()" disabled>
+                            <i data-lucide="paint-bucket"></i>
+                            <span data-i18n="controls.tools.fill"></span>
+                        </button>
+                    </div>
                     
-                    <button class="modern-button" id="delete-mode-btn" onclick="window.deleteModule?.toggleDeleteMode()" disabled>
-                        <i data-lucide="trash-2"></i>
-                        <span data-i18n="controls.tools.deleteActivate"></span>
-                    </button>
+                    <div class="status-message" id="crop-status"></div>
+                    <div class="status-message" id="delete-status"></div>
+                    <div class="status-message" id="line-width-status"></div>
+                    <div class="status-message" id="fill-status"></div>
                     
-                    <div class="crop-status status-message" id="crop-status"></div>
-                    <div class="delete-status status-message" id="delete-status"></div>
+                    <div class="tool-controls" id="line-width-controls">
+                        <div class="control-group">
+                            <label class="control-label" data-i18n="controls.lineWidth.width"></label>
+                            <div class="slider-container">
+                                <input type="range" id="line-width-slider" min="0.5" max="20" value="2" step="0.5" oninput="window.lineWidthModule?.updateWidth()">
+                            </div>
+                            <div class="value-display" id="line-width-value">2.0</div>
+                        </div>
+                        
+                        <div class="button-actions">
+                            <button class="modern-button small danger" onclick="window.lineWidthModule?.clearAllWidths()">
+                                <i data-lucide="x"></i>
+                                <span data-i18n="controls.lineWidth.clear"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tool-controls" id="fill-controls">
+                        <div class="control-group">
+                            <label class="control-label" data-i18n="controls.fill.opacity"></label>
+                            <div class="slider-container">
+                                <input type="range" id="fill-opacity" min="10" max="100" value="50" oninput="window.fillModule?.updateOpacity()">
+                            </div>
+                            <div class="value-display" id="fill-opacity-value">50%</div>
+                        </div>
+                        
+                        <div class="button-actions">
+                            <button class="modern-button small danger" onclick="window.fillModule?.clearAllFills()">
+                                <i data-lucide="trash"></i>
+                                <span data-i18n="controls.fill.clearAll"></span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="control-section">

@@ -1,0 +1,150 @@
+{
+    "app": {
+        "title": "Topography Editor"
+    },
+    "navigation": {
+        "hint": "Click and drag to move • Scroll to zoom"
+    },
+    "controls": {
+        "file": {
+            "title": "GeoJSON File",
+            "upload": "Click to load file"
+        },
+        "tools": {
+            "title": "Tools",
+            "cropActivate": "Crop Mode",
+            "cropDeactivate": "Deactivate Crop",
+            "deleteActivate": "Delete Mode",
+            "deleteDeactivate": "Deactivate Delete",
+            "lineWidth": "Width",
+            "fill": "Fill"
+        },
+        "colors": {
+            "title": "Colors",
+            "enable": "Use elevation colors",
+            "loadFile": "Load a file to see elevation information"
+        },
+        "appearance": {
+            "title": "Appearance",
+            "rotation": "Rotation",
+            "thickness": "Line thickness",
+            "smoothness": "Smoothing",
+            "density": "Density",
+            "densityAll": "All lines",
+            "densityEvery": "Every"
+        },
+        "markers": {
+            "title": "Markers",
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "size": "Point size",
+            "add": "Add",
+            "clear": "Clear",
+            "noPoints": "No points added",
+            "point": "Point"
+        },
+        "export": {
+            "title": "Export"
+        },
+        "lineWidth": {
+            "width": "Width",
+            "gradient": "Gradient",
+            "apply": "Apply",
+            "elevation": "Apply to elevation",
+            "clear": "Clear"
+        },
+        "fill": {
+            "opacity": "Opacity",
+            "useGradient": "Use gradient",
+            "apply": "Apply",
+            "cancel": "Cancel",
+            "clearAll": "Clear All"
+        }
+    },
+    "status": {
+        "processing": "Processing...",
+        "invalidGeoJSON": "Invalid GeoJSON file",
+        "emptyGeoJSON": "Empty GeoJSON file",
+        "noGeometry": "No line geometry found",
+        "noCoordinates": "No valid coordinates found",
+        "invalidDimensions": "Invalid dimensions",
+        "invalidFile": "Please select a .geojson or .json file",
+        "fileError": "Error processing file: {error}",
+        "readError": "Error reading file",
+        "elevation": "Elevation: {min}m - {max}m",
+        "variation": "Variation: {range}m",
+        "cropActive": "Crop mode activated. Click on a line to create crop mask.",
+        "cropProcessing": "Processing crop...",
+        "cropSuccess": "Crop completed! {kept} of {original} lines kept.",
+        "deleteActive": "Delete mode activated. Click on a line to remove it.",
+        "deleteProcessing": "Deleting line...",
+        "deleteSuccess": "Line deleted successfully!",
+        "lineWidthActive": "Click on a line to edit its width",
+        "lineSelected": "Line selected. Adjust controls below.",
+        "widthApplied": "Width applied!",
+        "widthAppliedToElevation": "Width applied to all lines of elevation!",
+        "widthsCleared": "Widths reset!",
+        "fillSelectFirst": "Select the first line",
+        "fillSelectSecond": "Select the second line",
+        "fillReady": "Ready to fill!",
+        "fillApplied": "Fill applied!",
+        "fillsCleared": "Fills removed!",
+        "fillIncompatibleLines": "Incompatible lines for filling",
+        "noFillBetweenLines": "No fill between these lines",
+        "noActiveFills": "No active fills",
+        "activeFill": "active fill",
+        "activeFills": "active fills",
+        "fillsRemoved": "fills removed",
+        "firstLine": "First line",
+        "secondLine": "Second line",
+        "opacity": "opacity",
+        "fillPreviewing": "Previewing fill (temporary)",
+        "fillRemoved": "Fill removed",
+        "fileLoaded": "File loaded: {lines} lines in {levels} levels",
+        "noLinesProcessed": "No lines processed",
+        "fileTooLarge": "File too large (max 50MB)"
+    },
+    "alerts": {
+        "loadFileFirst": "Please load a file first!",
+        "confirmCrop": "Use elevation {elevation}m line as crop mask?",
+        "confirmDelete": "Delete this elevation {elevation}m line?",
+        "lineTooSmall": "Selected line is too small to be used as mask",
+        "invalidCoordinates": "Please enter valid coordinates",
+        "coordinatesOutOfBounds": "Coordinates are outside map bounds:\nLatitude: {minLat} to {maxLat}\nLongitude: {minLon} to {maxLon}",
+        "selectLineFirst": "Select a line first!",
+        "confirmClearWidths": "Clear all custom widths?",
+        "selectTwoLines": "Select two lines first!",
+        "confirmClearFills": "Remove all fills?",
+        "noFillsToDelete": "No fills to remove",
+        "selectTwoLinesToRemove": "Select two lines to remove fill"
+    },
+    "canvas": {
+        "noData": "Load a GeoJSON file\nto view contour lines"
+    },
+    "errors": {
+        "statusDivNotFound": "Status element not found",
+        "loadingDivNotFound": "Loading element not found",
+        "loadGeoJSONFirst": "Load a GeoJSON file first",
+        "canvasContainerNotFound": "Canvas container element not found",
+        "setupError": "Error during setup",
+        "drawError": "Error during rendering",
+        "fatalInitializationError": "Fatal error during initialization",
+        "initializationError": "Initialization Error",
+        "appLoadError": "An error occurred while loading the application:",
+        "checkConsole": "Check console for more details.",
+        "localeLoadFailed": "Failed to load language"
+    },
+    "debug": {
+        "appInitialized": "Application initialized successfully",
+        "loadingShow": "show",
+        "loadingHide": "hide",
+        "fileProcessingError": "Error processing file"
+    },
+    "info": {
+        "loadFileForInfo": "Load a file to see information",
+        "loadGeoJSONForInfo": "Load a GeoJSON file to see information",
+        "elevationRange": "Elevation: {min}m - {max}m",
+        "levels": "Levels: {count}",
+        "lines": "Lines: {count}"
+    }
+}
