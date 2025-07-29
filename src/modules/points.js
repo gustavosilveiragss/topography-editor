@@ -1,7 +1,15 @@
 import { state } from './state.js';
 import { i18n } from './i18n.js';
+import { transformUtils } from './transformUtils.js';
 
 class PointsModule {
+    constructor() {
+        this.p5Instance = null;
+    }
+
+    setP5Instance(p) {
+        this.p5Instance = p;
+    }
     addPoint() {
         const lat = parseFloat(document.getElementById('point-lat').value);
         const lon = parseFloat(document.getElementById('point-lon').value);
@@ -9,7 +17,17 @@ class PointsModule {
         if (!this.validateCoordinates(lat, lon)) return;
         if (!this.validateBounds(lat, lon)) return;
 
-        state.redPoints.push({ lat, lon, size: state.visual.pointSize });
+        const point = { lat, lon, size: state.visual.pointSize };
+        
+        if (this.p5Instance) {
+            const centerX = (state.bounds.minX + state.bounds.maxX) / 2;
+            const centerY = (state.bounds.minY + state.bounds.maxY) / 2;
+            
+            point.screenX = (lon - centerX) * state.coordinateScale;
+            point.screenY = -(lat - centerY) * state.coordinateScale;
+        }
+        
+        state.redPoints.push(point);
         this.updatePointList();
         redraw();
 

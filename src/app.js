@@ -49,6 +49,7 @@ async function initializeApp() {
 
                     cropModule.setP5Instance(p);
                     deleteModule.setP5Instance(p);
+                    pointsModule.setP5Instance(p);
                     exportModule.setP5Instance(p);
                     fillModule.setP5Instance(p);
                     lineWidthModule.setP5Instance(p);
