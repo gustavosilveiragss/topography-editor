@@ -56,4 +56,7 @@ export const state = {
     },
     lineWidths: {},
     fills: {},
+    settings: {
+        locale: localStorage.getItem('topography-editor-locale') || 'pt-BR',
+    },
 };

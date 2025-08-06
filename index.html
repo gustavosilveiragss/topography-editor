@@ -10,6 +10,14 @@
 <body>
     <div class="app-container">
         <div id="canvas-container">
+            <div class="language-switcher">
+                <button class="flag-button active" data-locale="pt-BR" onclick="window.i18nModule?.switchLanguage('pt-BR')">
+                    🇧🇷
+                </button>
+                <button class="flag-button" data-locale="en-US" onclick="window.i18nModule?.switchLanguage('en-US')">
+                    🇺🇸
+                </button>
+            </div>
             <div class="nav-hint" data-i18n="navigation.hint"></div>
         </div>
         

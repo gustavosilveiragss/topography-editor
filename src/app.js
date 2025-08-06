@@ -37,6 +37,7 @@ async function initializeApp() {
             pointsModule,
             fillModule,
             lineWidthModule,
+            i18nModule: i18n,
         });
 
         const sketch = (p) => {

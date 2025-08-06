@@ -1,12 +1,35 @@
+import { state } from './state.js';
+
 class I18n {
     constructor() {
-        this.currentLocale = 'pt-BR';
+        this.currentLocale = state.settings.locale;
         this.translations = {};
     }
 
     async init() {
         await this.loadLocale(this.currentLocale);
         this.updateDOM();
+    }
+
+    async switchLanguage(locale) {
+        this.currentLocale = locale;
+        state.settings.locale = locale;
+        localStorage.setItem('topography-editor-locale', locale);
+        
+        await this.loadLocale(locale);
+        this.updateDOM();
+        this.updateLanguageSwitcher();
+    }
+
+    updateLanguageSwitcher() {
+        document.querySelectorAll('.flag-button').forEach(button => {
+            const buttonLocale = button.getAttribute('data-locale');
+            if (buttonLocale === this.currentLocale) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+        });
     }
 
     async loadLocale(locale) {
@@ -45,6 +68,8 @@ class I18n {
         if (title) {
             title.textContent = this.t(title.getAttribute('data-i18n'));
         }
+        
+        this.updateLanguageSwitcher();
     }
 }
 
